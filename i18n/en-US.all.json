@@ -1,0 +1,11 @@
+[
+  // layout
+  { "id": "menu_simulate", "translation": "Simulate"},
+  { "id": "menu_people", "translation": "People"},
+  { "id": "menu_projects", "translation": "Projects"},
+  { "id": "menu_abilities", "translation": "Abilities"},
+  { "id": "search_bar", "translation": "Search..."},
+
+  // index
+  { "id": "index_title", "translation": "Simulate Allocation"}
+]
