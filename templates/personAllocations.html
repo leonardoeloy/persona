@@ -1,0 +1,30 @@
+<ol class="breadcrumb">
+    <li><a href="/people">{{T "people_title"}}</a></li>
+    <li class="active">{{T "person_edit"}} {{.Name}}</li>
+</ol>
+
+<h1 class="page-header">{{T "people_title"}}</h1>
+
+<form method="GET" action="people/new">
+    <button id="new" class="btn btn-primary" type="submit">{{T "people_new"}}</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{{T "cost_center"}}</th>
+            <th>{{T "allocation"}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {{ range "allocations"}}
+        <tr>
+            <td>{{.CostCenter.Name}}</td>
+            <td>{{.Allocation}}%</td>
+            <td align="left">
+            </td>
+        </tr>
+    {{ end }}
+    </tbody>
+</table>

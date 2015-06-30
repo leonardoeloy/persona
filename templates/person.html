@@ -1,0 +1,20 @@
+<ol class="breadcrumb">
+    <li><a href="/people">{{T "people_title"}}</a></li>
+    <li class="active">{{T "person_edit"}} {{.Name}}</li>
+</ol>
+
+<h1 class="page-header">{{T "person_edit"}} {{.Name}}</h1>
+
+<form method="POST" action="/people{{ if .}}/{{.Id}}{{end}}">
+    <div class="form-group">
+        <label for="Name">{{T "person_name"}}</label>
+        <input type="name" class="form-control" id="Name" name="Name" value="{{.Name}}">
+    </div>
+
+    <div class="form-group">
+        <label for="Name">{{T "person_email"}}</label>
+        <input type="email" class="form-control" id="Email" name="Email" value="{{.Email}}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ if .}}{{T "save"}}{{else}}{{T "create"}}{{end}}</button> or <a href="/people">{{T "cancel"}}</a>
+</form>

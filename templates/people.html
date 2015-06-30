@@ -1,0 +1,58 @@
+<ol class="breadcrumb">
+    <li class="active">{{T "people_title"}}</li>
+</ol>
+
+<h1 class="page-header">{{T "people_title"}}</h1>
+
+<form method="GET" action="people/new">
+    <button id="new" class="btn btn-primary" type="submit">{{T "people_new"}}</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{{T "person_name"}}</th>
+            <th>{{T "person_email"}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {{ range .}}
+        <tr>
+            <td>{{.Name}}</td>
+            <td>{{.Email}}</td>
+            <td align="left">
+                <a href="/people/{{.Id}}/allocations" class="glyphicon glyphicon-resize-small" data-toggle="tooltip" data-placement="top" title="{{T "allocate"}}"></a>
+                <a href="/people/{{.Id}}" class="glyphicon glyphicon-pencil"  data-toggle="tooltip" data-placement="top" title="{{T "edit"}}"></a>
+                <a href="#" class="glyphicon glyphicon-remove" data-id="{{.Id}}" data-action="remove" data-toggle="tooltip" data-placement="top" title="{{T "remove"}}"></a>
+            </td>
+        </tr>
+    {{ end }}
+    </tbody>
+</table>
+
+{{ define "scripts" }}
+<script>
+    $(document).ready(function () {
+        $("a[data-action='remove']").click(function(event) {
+            if (!confirm('{{T "people_remove"}}')) return;
+            var id = event.toElement.attributes["data-id"].value;
+
+            $.ajax({
+                type: 'DELETE',
+                url: '/people/' + id,
+                success: function(response) {
+                    $(event.toElement).closest('tr').find('td').fadeOut('fast'), function (here) {
+                        $(here).parents('tr:first').remove();
+                    }
+                },
+                error: function (response) {
+                    alert('{{T "people_remove_error"}}');
+                }
+            });
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+{{ end }}

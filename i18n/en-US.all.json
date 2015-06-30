@@ -6,6 +6,12 @@
   { "id": "menu_abilities", "translation": "Abilities"},
   { "id": "search_bar", "translation": "Search..."},
   { "id": "menu_current", "translation": "(current)"},
+  { "id": "save", "translation": "Save"},
+  { "id": "edit", "translation": "Edit"},
+  { "id": "cancel", "translation": "Cancel"},
+  { "id": "remove", "translation": "Remove"},
+  { "id": "create", "translation": "Create"},
+  { "id": "allocate", "translation": "Allocate"},
 
   { "id": "ability_junior", "translation": "0-3 years"},
   { "id": "ability_professional", "translation": "3-5 years"},
@@ -16,5 +22,15 @@
 
   { "id": "simulate_title", "translation": "Simulate Allocation"},
   { "id": "simulate_project_start_date", "translation": "Project Start Date"},
-  { "id": "simulate_abilities", "translation": "Abilities"}
+  { "id": "simulate_abilities", "translation": "Abilities"},
+
+  { "id": "people_title", "translation": "People"},
+  { "id": "people_title_remove", "translation": "Remove Person"},
+  { "id": "people_remove", "translation": "Do you really with to remove this Person?"},
+  { "id": "people_remove_error", "translation": "An error occurred while removing this person. Please, try again later."},
+  { "id": "people_new", "translation": "New Person"},
+
+  { "id": "person_edit", "translation": "Edit"},
+  { "id": "person_name", "translation": "Name"},
+  { "id": "person_email", "translation": "E-mail"}
 ]

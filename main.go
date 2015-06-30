@@ -17,7 +17,7 @@ var (
 	bindingAddress = flag.String("binding", ":8180", "HTTP Server Binding Addres, i.e. 127.0.0.1:8080 or simply :8080")
 	maxIdleConns = flag.Int("maxIdleConns", 100, "Max. number of idle database connections in the pool")
 	dataSourceName = flag.String("dataSourceName", "root:password@/persona", "Data source connection string (only MySQL is supported right now)")
-	i18nFile = flag.String("i18n", "i18n/en-US.all.json", "i18n JSON file with translations")
+	lang = flag.String("lang", "en-US", "Change default UI language. JSON translation must be in i18n/<lang>.all.json")
 
 	rdr *render.Render
 )
@@ -33,9 +33,10 @@ func main() {
 }
 
 func Initializei18n() {
-	log.Printf("Loading i18n from [%s]", *i18nFile)
+	i18nFile := "i18n/" + *lang + ".all.json"
+	log.Printf("Loading i18n from [%s]", i18nFile)
 
-	i18n.MustLoadTranslationFile(*i18nFile)
+	i18n.MustLoadTranslationFile(i18nFile)
 }
 
 func StartHttpServer() {
@@ -56,19 +57,27 @@ func StartHttpServer() {
 		log.Fatalf("Couldn't bind HTTP server [%s]", err)
 	}
 
-	log.Println("Persona has left the building.\n")
+	log.Println("Persona has left the building.")
 }
 
 func SetRoutes(r *mux.Router) {
 	simulate := r.Path("/simulate").Subrouter()
 	simulate.Methods("GET").HandlerFunc(SimulateGet)
 
+	people := r.Path("/people").Subrouter()
+	people.Methods("GET").HandlerFunc(PeopleGet)
+	people.Methods("POST").HandlerFunc(PeoplePost)
+
+	r.Path("/people/new").Methods("GET").HandlerFunc(PeopleGetNew)
+
+	person := r.PathPrefix("/people/{id:[0-9]+}").Subrouter()
+	person.Methods("GET").HandlerFunc(PeopleGetOne)
+	person.Methods("POST").HandlerFunc(PeoplePostOne)
+	person.Methods("DELETE").HandlerFunc(PeoplePostRemove)
+	person.Path("/allocations").Methods("GET").HandlerFunc(PeopleAllocateGet)
+
 	r.PathPrefix("/s/").Handler(http.StripPrefix("/s/", http.FileServer(http.Dir("./public"))))
 	r.HandleFunc("/", HomeIndex)
 
 	http.Handle("/", r)
 }
-
-
-
-
