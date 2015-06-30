@@ -60,8 +60,8 @@ func StartHttpServer() {
 }
 
 func SetRoutes(r *mux.Router) {
-	personas := r.Path("/personas").Subrouter()
-	personas.Methods("GET").HandlerFunc(PersonasIndexHandler)
+	simulate := r.Path("/simulate").Subrouter()
+	simulate.Methods("GET").HandlerFunc(SimulateGet)
 
 	r.PathPrefix("/s/").Handler(http.StripPrefix("/s/", http.FileServer(http.Dir("./public"))))
 	r.HandleFunc("/", HomeIndex)

@@ -1,11 +1,20 @@
 [
-  // layout
+  { "id": "menu_dashboard", "translation": "Dashboard"},
   { "id": "menu_simulate", "translation": "Simulate"},
   { "id": "menu_people", "translation": "People"},
   { "id": "menu_projects", "translation": "Projects"},
   { "id": "menu_abilities", "translation": "Abilities"},
   { "id": "search_bar", "translation": "Search..."},
+  { "id": "menu_current", "translation": "(current)"},
 
-  // index
-  { "id": "index_title", "translation": "Simulate Allocation"}
+  { "id": "ability_junior", "translation": "0-3 years"},
+  { "id": "ability_professional", "translation": "3-5 years"},
+  { "id": "ability_senior", "translation": "5-10 years"},
+  { "id": "ability_expert", "translation": "10+ years"},
+
+  { "id": "index_title", "translation": "Allocate People. The Right way."},
+
+  { "id": "simulate_title", "translation": "Simulate Allocation"},
+  { "id": "simulate_project_start_date", "translation": "Project Start Date"},
+  { "id": "simulate_abilities", "translation": "Abilities"}
 ]
